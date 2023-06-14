@@ -52,9 +52,17 @@ namespace hpx::lcos {
         /// derived objects
         virtual ~base_lco();
 
+#if defined(HPX_GCC_VERSION) && HPX_GCC_VERSION >= 110000
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Werror=overloaded-virtual="
+#endif
         /// \brief finalize() will be called just before the instance gets
         ///        destructed
         virtual void finalize();
+
+#if defined(HPX_GCC_VERSION) && HPX_GCC_VERSION >= 110000
+#pragma GCC diagnostic pop
+#endif
 
         /// The \a function set_event_nonvirt is called whenever a
         /// \a set_event_action is applied on a instance of a LCO. This function
